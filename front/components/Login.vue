@@ -58,10 +58,13 @@ const login = () => {
 
     axios.post('http://localhost:3001/api/auth/login', credentials)
       .then((response) => {
-        if(response.data.token){
+        if (response.data.token) {
           alert('ca marche')
+          const token = response.data.token;
+          localStorage.setItem("token",token)
+          
         }
-        else{
+        else {
           alert("ca marche pas")
         }
       })
