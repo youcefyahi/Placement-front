@@ -1,6 +1,7 @@
 <template>
     <div>
       <h1 class="text-2xl font-semibold">Profil de l'utilisateur</h1>
+      <nuxt-link to="/home"><div>retour a l'acceuill</div></nuxt-link> 
       <form @submit.prevent="updateUserProfile" class="mt-4 space-y-4">
         <div class="flex flex-col">
           <label for="firstName" class="text-sm font-semibold">Prénom : {{ user.firstName }}</label>
