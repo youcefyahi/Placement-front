@@ -1,27 +1,23 @@
 <template>
-  <form @submit.prevent="login">
-    <div>
-      <label for="email">Email :</label>
-      <input type="email" v-model="email" id="email" />
-      <span v-if="errors.email">{{ errors.email }}</span>
+  <form @submit.prevent="login" class="w-full max-w-md mx-auto">
+    <div class="mb-4">
+      <label for="email" class="block text-gray-700 font-bold mb-2">Email :</label>
+      <input type="email" v-model="email" id="email" class="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-blue-500" />
+      <span v-if="errors.email" class="text-red-500">{{ errors.email }}</span>
     </div>
-    <div>
-      <label for="password">Mot deqsdsq passe :</label>
-      <input type="password" v-model="password" id="password" />
-      <span v-if="errors.password">{{ errors.password }}</span>
+    <div class="mb-4">
+      <label for="password" class="block text-gray-700 font-bold mb-2">Mot de passe :</label>
+      <input type="password" v-model="password" id="password" class="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:border-blue-500" />
+      <span v-if="errors.password" class="text-red-500">{{ errors.password }}</span>
     </div>
-    <button type="submit">Se connecter</button>
-
+    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline-blue active:bg-blue-700">
+      Se connecter
+    </button>
   </form>
 </template>
 
-
-  <Register/>
-
-
-
 <script setup>
-import { ref, reactive, computed } from 'vue';
+import { ref, reactive, } from 'vue';
 import axios from 'axios';
 
 const email = ref('');
@@ -41,14 +37,6 @@ const login = () => {
     errors.email = null;
   }
 
-  // Validation du mot de passe
-  // if (!passwordIsValid(password.value)) {
-  //   errors.password = 'Le mot de passe doit avoir au moins 8 caractères.';
-  // } else {
-  //   errors.password = null;
-  // }
-
-  // Vérification du formulaire
 
   if (isValidForm(errors)) {
     const credentials = {
@@ -61,8 +49,12 @@ const login = () => {
         if (response.data.token) {
           alert('ca marche')
           const token = response.data.token;
-          localStorage.setItem("token",token)
-          
+          localStorage.setItem("token", token)
+          const router = useRouter();
+
+          router.push({ path: "/home" });
+
+
         }
         else {
           alert("ca marche pas")

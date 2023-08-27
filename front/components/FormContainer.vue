@@ -1,7 +1,19 @@
 <template>
-    <Login v-if="showLoginForm"/>
-     <Register v-else="showLoginForm"/>
-     <button @click="toggleRegisterForm">Basculer vers le formulaire d'inscription</button>
+  <div class="min-h-screen flex items-center justify-center">
+    <div class="max-w-md w-full">
+      <Login v-if="showLoginForm" />
+      <Register v-if="!showLoginForm" />
+      <ForgetPassword/>
+      <button v-if="showLoginForm" @click="toggleRegisterForm"
+        class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-700">
+        Basculer vers le formulaire d'inscription
+      </button>
+      <button v-if="!showLoginForm" @click="toggleLoginForm"
+        class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue active:bg-blue-700">
+        Basculer vers le formulaire de connexion
+      </button>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -15,5 +27,11 @@ const toggleRegisterForm = () => {
   showLoginForm.value = false;
   alert('ca marche')
 };
+
+const toggleLoginForm = () => {
+  showLoginForm.value = true;
+  alert('ca sqdsq')
+};
+
 
 </script>

@@ -15,7 +15,7 @@
             <!-- Menu déroulant utilisateur (ajoutez votre logique pour le rendre cliquable) -->
             <div class="hidden group-hover:block absolute top-full right-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-lg">
               <!-- Ajoutez ici des éléments du menu déroulant -->
-              <div class="py-2 px-4 hover:bg-gray-100 cursor-pointer">Mon profil</div>
+              <div class="py-2 px-4 hover:bg-gray-100 cursor-pointer"> <nuxt-link to="/profil">mon profil</nuxt-link></div>
               <div class="py-2 px-4 hover:bg-gray-100 cursor-pointer">Déconnexion</div>
             </div>
           </div>

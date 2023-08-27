@@ -2,6 +2,11 @@
     <Header/>
     <Contrat/>
 </template>
+
+<script>
+ 
+
+</script>
   
 
 
