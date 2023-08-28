@@ -10,7 +10,10 @@ Bienvenue dans le projet Nuxt.js ! Ce projet est une application web construite 
 
 ### Mot de Passe de la Base de Données
 
-Le mot de passe de la base de données est le suivant : `motdepasse`
+Le mail pour se connecter: youcef@gamil.com
+
+Le mot de passe pour se connecter:
+motdepasse
 
 ## Tailwind CSS
 
