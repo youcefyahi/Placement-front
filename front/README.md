@@ -10,7 +10,8 @@ Bienvenue dans le projet Nuxt.js ! Ce projet est une application web construite 
 
 ### Mot de Passe de la Base de Données
 
-Le mail pour se connecter: youcef@gamil.com
+Le mail pour se connecter: 
+youcef@gmail.com
 
 Le mot de passe pour se connecter:
 motdepasse
