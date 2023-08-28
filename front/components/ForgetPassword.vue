@@ -1,4 +1,5 @@
 <template>
+  <img src="../assets/placement-direct-logo.svg" alt="placement-direc" class="mb-4" />
   <form @submit.prevent="submitForm" class="w-full max-w-md mx-auto">
     <div class="mb-4">
       <label for="email" class="block text-gray-700 font-bold mb-2">Email :</label>
@@ -41,13 +42,8 @@ const submitForm = async () => {
     email: email.value,
     password: password.value,
   };
-
- 
-
-
   try {
     await axios.put('http://localhost:3001/api/user/password', userData);
-    alert('Mot de passe  mis à jour avec succès');
     location.reload()
 
     // Réinitialisez les champs et les erreurs ici si nécessaire
@@ -57,12 +53,12 @@ const submitForm = async () => {
 };
 
 const validateEmail = () => {
-    if (!emailIsValid(email.value)) {
-      errors.email = 'L\'adresse email n\'est pas valide';
-    } else {
-      errors.email = null;
-    }
-  };
+  if (!emailIsValid(email.value)) {
+    errors.email = 'L\'adresse email n\'est pas valide';
+  } else {
+    errors.email = null;
+  }
+};
 
 const validatePassword = () => {
   if (password.value.length < 8) {
@@ -71,7 +67,6 @@ const validatePassword = () => {
     errors.password = null;
   }
 };
-
 const isValidForm = (errors) => {
   return !errors.email && !errors.password;
 };

@@ -1,5 +1,9 @@
 <template>
-  <form @submit.prevent="registerUser" class="max-w-md mx-auto">
+  <div class="mb-4 ml-20">
+    <img src="../assets/placement-direct-logo.svg" alt="placement-direc" />
+  </div>
+
+  <form @submit.prevent="onSubmit" class="max-w-md mx-auto">
     <div class="mb-4">
       <label for="firstName" class="block">Prénom</label>
       <input type="text" id="firstName" v-model="firstName" class="w-full px-4 py-2 rounded border" />
@@ -23,8 +27,7 @@
     <div class="mb-4">
       <label for="password" class="block">Mot de passe</label>
       <input type="password" id="password" v-model="password" class="w-full px-4 py-2 rounded border" />
-      <p v-if="!isValidPassword" class="text-red-500 mt-1">Le mot de passe doit comporter au moins 8 caractères sans
-        caractères spéciaux.</p>
+      <p v-if="!isValidPassword" class="text-red-500 mt-1">Le mot de passe doit comporter au moins 8 caractères sans caractères spéciaux.</p>
     </div>
     <button type="submit" class="w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
       S'inscrire
@@ -36,79 +39,46 @@
   <p v-if="errorMessage" class="text-red-500 mt-4">{{ errorMessage }}</p>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
-import axios from 'axios';
+import {registerUser} from '../service/AuthService'
 
-const firstName = ref('');
-const lastName = ref('');
-const email = ref('');
-const password = ref('');
-const phone = ref('');
-const successMessage = ref('');
-const errorMessage = ref('');
+const firstName = ref<string>('');
+const lastName = ref<string>('');
+const email = ref<string>('');
+const password = ref<string>('');
+const phone = ref<string>('');
+const successMessage = ref<string>('');
+const errorMessage = ref<string>('');
+const isValidFirstName = ref<boolean>(true);
+const isValidLastName = ref<boolean>(true);
+const isValidEmail = ref<boolean>(true);
+const isValidPhone = ref<boolean>(true);
+const isValidPassword = ref<boolean>(true);
 
-const isValidEmail = ref(true);
-const isValidPassword = ref(true);
-const isValidFirstName = ref(true);
-const isValidLastName = ref(true);
-const isValidPhone = ref(true);
+const onSubmit = async () => {
+  // Réinitialisez les validations
+  isValidFirstName.value = true;
+  isValidLastName.value = true;
+  isValidEmail.value = true;
+  isValidPhone.value = true;
+  isValidPassword.value = true;
 
-const registerUser = async () => {
-  // Valider les champs
-  isValidEmail.value = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/.test(email.value);
-  isValidPassword.value = /^[A-Za-z\d]{8,}$/.test(password.value);
-  isValidFirstName.value = /^[A-Za-z\s]+$/.test(firstName.value);
-  isValidLastName.value = /^[A-Za-z\s]+$/.test(lastName.value);
-  isValidPhone.value = /^\d{10}$/.test(phone.value);
+  const userData = {
+    firstName: firstName.value,
+    lastName: lastName.value,
+    email: email.value,
+    password: password.value,
+    phone: phone.value
+  };
 
-  // Vérifier si tous les champs sont valides
-  if (isValidEmail.value && isValidPassword.value && isValidFirstName.value && isValidLastName.value && isValidPhone.value) {
-    // Créez un objet avec les données du formulaire
-    const userData = {
-      firstName: firstName.value,
-      lastName: lastName.value,
-      email: email.value,
-      password: password.value,
-      phone: phone.value
-    };
+  const authResult = await registerUser(userData);
 
-    try {
-      // Envoyez une requête HTTP POST pour créer l'utilisateur
-      await axios.post('http://localhost:3001/api/auth/register', userData)
-        .then((response) => {
-          if (response) {
-            successMessage.value = 'Inscription réussie ! Vous pouvez maintenant vous connecter.';
-            const credentials = {
-              email: email.value,
-              password: password.value,
-            };
-
-            axios.post('http://localhost:3001/api/auth/login',credentials)
-            .then((response) => {
-              if (response.data.token) {
-                alert('rediriger y as le token')
-                const token = response.data.token;
-                localStorage.setItem("token", token)
-                const router = useRouter();
-
-                router.push({ path: "/home" });
-
-
-              }
-              else {
-                alert("ca marche pas")
-              }
-            })
-
-          }
-        })
-      // Si la requête est réussie, affichez un message de succès
-
-    } catch (error) {
-      // Si la requête échoue, affichez un message d'erreur
-      errorMessage.value = 'Une erreur s\'est produite lors de l\'inscription. Veuillez réessayer plus tard.';
-    }
+  if (authResult.success) {
+    successMessage.value = 'Inscription réussie ! Vous pouvez maintenant vous connecter.';
+    location.reload()
+  } else {
+    errorMessage.value = authResult.message || 'Une erreur s\'est produite lors de l\'inscription. Veuillez réessayer plus tard.';
   }
 };
 </script>

@@ -33,11 +33,10 @@ const toggleRegisterForm = () => {
   showLoginForm.value = false;
   showResgisterForm.value = true
   showPasswordForm.value = false;
-  alert('ca marche')
 };
 
 const toggleLoginForm = () => {
-  showLoginForm.value = true;
+  showLoginForm.value = true
   showResgisterForm.value = false
   showPasswordForm.value = false;
 };
@@ -46,7 +45,6 @@ const togglePasswordForm = () => {
   showLoginForm.value = false;
   showResgisterForm.value = false
   showPasswordForm.value = true;
-  alert('ca sqdsq')
 };
 
 

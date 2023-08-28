@@ -12,8 +12,6 @@
   </div>
 </template>
 
-
-
 <script>
 export default {
   data() {
@@ -23,15 +21,8 @@ export default {
         { name: 'Assurance Courtage' },
         { name: 'Assurance Courtage' },
         { name: 'Assurance Courtage' },
-        // Ajoutez ici vos contrats réels depuis une API ou une source de données
       ],
     };
-  },
-  methods: {
-    pdfPath(filename) {
-      // Utilisez l'alias pour construire le chemin complet du PDF
-      return `@contrats/${filename}`;
-    },
   },
 };
 </script>

@@ -1,20 +1,18 @@
 <template>
   <header class="bg-blue-500 p-4">
     <div class="container mx-auto flex items-center justify-between">
-      <h1 class="text-white text-2xl font-semibold">Mon Application</h1>
-
+      <h1 class="text-white text-2xl font-semibold">Placement-direct</h1>
       <!-- Bulle d'utilisateur -->
-      <div class="relative" @click="menuVisible = !menuVisible">
+      <div class="relative cursor-pointer" @click="menuVisible = !menuVisible">
         <!-- Les deux premières lettres du nom -->
         <div class="bg-white text-blue-500 w-8 h-8 rounded-full flex items-center justify-center text-xl font-semibold">
           {{ userInitials }}
         </div>
-
         <!-- Menu déroulant utilisateur -->
         <div v-if="menuVisible" class="absolute top-full right-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-lg">
           <!-- Ajoutez ici des éléments du menu déroulant -->
           <div class="py-2 px-4 hover:bg-gray-100 cursor-pointer">
-            <button><nuxt-link to="/profil">mon profil</nuxt-link></button>
+            <nuxt-link to="/profil">Mon profil</nuxt-link>
           </div>
           <div class="py-2 px-4 hover:bg-gray-100 cursor-pointer">
             <button @click="deconnexion">Déconnexion</button>
@@ -48,7 +46,3 @@ const deconnexion = async () => {
 
 };
 </script>
-
-<style scoped>
-/* Ajoutez vos styles Tailwind personnalisés ici si nécessaire */
-</style>
