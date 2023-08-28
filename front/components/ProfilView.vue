@@ -33,8 +33,11 @@
       </button>
     </form>
     <div v-if="updateSuccess" class="text-green-500 font-semibold">
-        Mise à jour réussie !
-      </div>
+      Mise à jour réussie !
+    </div>
+    <div v-if="noUpdateSuccess" class="text-green-500 font-semibold">
+      La mise à échouer !
+    </div>
   </div>
 </template>
 
@@ -44,19 +47,21 @@ import { updateUserProfile } from '../service/UserService'; // Assurez-vous de s
 
 const { user } = defineProps(['user']);
 const updateSuccess = ref(false);
+const NopdateSuccess = ref(false);
 
 const userProfile = ref({
   email: user.email,
   password: user.password,
   phone: user.phone,
-  firstName:user.firstName,
-  lastName:user.lastName
+  firstName: user.firstName,
+  lastName: user.lastName
 });
 
 const updateUserProfileHandler = async () => {
   try {
     const response = await updateUserProfile(userProfile.value);
-    if(response){    updateSuccess.value = true;}
+    if (response) { updateSuccess.value = true; }
+    else { noUpdateSuccess.value = true }
 
 
   } catch (error) {
