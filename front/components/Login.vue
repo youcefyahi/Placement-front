@@ -38,7 +38,6 @@ const login = async () => {
 
   if (result.success) {
     // Connexion réussie, vous pouvez rediriger l'utilisateur
-    alert('Connexion réussie');
     const router = useRouter();
     router.push({ path: "/home" });
   } else {
