@@ -32,6 +32,9 @@
         Mettre à jour
       </button>
     </form>
+    <div v-if="updateSuccess" class="text-green-500 font-semibold">
+        Mise à jour réussie !
+      </div>
   </div>
 </template>
 
@@ -52,6 +55,8 @@ const userProfile = ref({
 const updateUserProfileHandler = async () => {
   try {
     const response = await updateUserProfile(userProfile.value);
+    updateSuccess.value = true;
+
   } catch (error) {
     console.error('Erreur lors de la mise à jour du profil:', error);
   }
