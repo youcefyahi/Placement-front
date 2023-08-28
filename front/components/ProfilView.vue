@@ -43,6 +43,7 @@ import { ref, defineProps } from 'vue';
 import { updateUserProfile } from '../service/UserService'; // Assurez-vous de spécifier le chemin correct vers votre service
 
 const { user } = defineProps(['user']);
+const updateSuccess = ref(false);
 
 const userProfile = ref({
   email: user.email,
@@ -55,7 +56,8 @@ const userProfile = ref({
 const updateUserProfileHandler = async () => {
   try {
     const response = await updateUserProfile(userProfile.value);
-    updateSuccess.value = true;
+    if(response){    updateSuccess.value = true;}
+
 
   } catch (error) {
     console.error('Erreur lors de la mise à jour du profil:', error);
