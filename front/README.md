@@ -1,5 +1,24 @@
 # Nuxt 3 Minimal Starter
 
+# README - Projet Nuxt.js
+
+## Introduction
+
+Bienvenue dans le projet Nuxt.js ! Ce projet est une application web construite avec Nuxt.js, un framework Vue.js pour créer des applications web modernes et performantes.
+
+## Configuration de la Base de Données
+
+### Mot de Passe de la Base de Données
+
+Le mot de passe de la base de données est le suivant : `motdepasse`
+
+## Tailwind CSS
+
+Ce projet utilise Tailwind CSS, un framework CSS utilitaire hautement personnalisable pour simplifier la création d'interfaces utilisateur. Vous pouvez facilement personnaliser le style de votre application en modifiant les classes Tailwind dans vos fichiers Vue.
+
+
+
+
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ## Setup
